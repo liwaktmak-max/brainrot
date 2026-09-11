@@ -44,9 +44,9 @@ window.BRAINROT_CONFIG = {
      Con una URL real sale como enlace; con "#" sale como botón que responde
      "NOT YET." y no aparece en el pie. */
   social: [
-    { label: 'X / TWITTER', url: '#' },
-    { label: 'TELEGRAM',    url: '#' },
-    { label: 'DISCORD',     url: '#' }
+    { label: 'X / TWITTER', url: 'https://x.com/marielisabethh9' },
+    { label: 'DISCORD',     url: 'https://discord.gg/6BjhC8tmS' },
+    { label: 'TELEGRAM',    url: '#' }
   ],
 
   /* ------------------------------------------------------------- NAVEGACIÓN */
