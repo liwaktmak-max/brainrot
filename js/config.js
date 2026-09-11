@@ -46,7 +46,7 @@ window.BRAINROT_CONFIG = {
   social: [
     { label: 'X / TWITTER', url: 'https://x.com/marielisabethh9' },
     { label: 'DISCORD',     url: 'https://discord.gg/6BjhC8tmS' },
-    { label: 'TELEGRAM',    url: '#' }
+    { label: 'TELEGRAM',    url: 'https://t.me/+7be0p-d2DmxjMWI0' }
   ],
 
   /* ------------------------------------------------------------- NAVEGACIÓN */
