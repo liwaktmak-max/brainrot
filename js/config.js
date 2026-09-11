@@ -17,7 +17,7 @@ window.BRAINROT_CONFIG = {
     ticker: '$ROT',
     tagline: 'YOUR BRAIN IS COOKED',
     description: 'A meme coin about doomscrolling, bad decisions and internet culture. Experimental project — not financial advice.',
-    url: 'https://usuario.github.io/brainrot/', // cámbialo por tu URL real de GitHub Pages
+    url: 'https://liwaktmak-max.github.io/brainrot/', // URL pública (la reescribe configure.cmd)
     lang: 'en'
   },
 

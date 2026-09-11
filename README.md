@@ -29,39 +29,32 @@ publicada.)
 
 ## 2. Publicarla gratis en GitHub Pages
 
-1. Crea un repositorio nuevo en GitHub, por ejemplo `brainrot`.
-2. Sube esta carpeta:
+El repositorio local ya está iniciado y con los commits hechos, y la URL pública
+ya está escrita en todos los archivos (`https://liwaktmak-max.github.io/brainrot/`).
+
+1. Crea en GitHub un repositorio **público** llamado `brainrot`, vacío (sin README).
+2. Conéctalo y súbelo:
 
 ```bash
-git init
-git add .
-git commit -m "BRAINROT landing"
-git branch -M main
-git remote add origin https://github.com/TU-USUARIO/brainrot.git
+git remote add origin https://github.com/liwaktmak-max/brainrot.git
 git push -u origin main
 ```
 
 3. En GitHub: **Settings → Pages → Source: Deploy from a branch → Branch: `main` / `(root)` → Save**.
-4. En 1-2 minutos estará en `https://TU-USUARIO.github.io/brainrot/`.
+4. En 1-2 minutos estará en <https://liwaktmak-max.github.io/brainrot/>.
 
-### Importante: pon tu URL antes de subirlo
+### Si cambias de URL
 
-Un solo comando lo escribe en todos los sitios (meta tags de Open Graph, canonical,
-`config.js`, `sitemap.xml` y `robots.txt`):
-
-```bash
-configure.cmd TU-USUARIO
-```
-
-Si el repo no se llama `brainrot`, o usas dominio propio:
+Un solo comando la reescribe en todos los sitios (meta tags de Open Graph,
+canonical, `config.js`, `sitemap.xml` y `robots.txt`):
 
 ```bash
-configure.cmd TU-USUARIO nombre-del-repo
+configure.cmd liwaktmak-max otro-repo
 configure.cmd https://midominio.com/
 ```
 
-Sin esto la web funciona igual, pero al compartir el enlace en X, Telegram o
-Discord no aparecerá la imagen de previsualización.
+Es lo que hace que al compartir el enlace en X, Telegram o Discord aparezca la
+imagen de previsualización.
 
 ---
 
