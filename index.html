@@ -2,6 +2,16 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+
+<!-- Seguridad: la web es 100% estatica y de un solo origen, asi que la politica
+     puede ser estricta. 'unsafe-inline' solo se concede a los estilos porque las
+     tarjetas usan atributos style para los colores y los retardos de animacion.
+     Si algun dia usas chaos.endpoint con una API externa, anade su origen a
+     connect-src. frame-ancestors y nosniff no caben aqui: GitHub Pages no deja
+     enviar cabeceras propias. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; font-src 'self'; connect-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#09090B">
 

@@ -147,7 +147,37 @@ Si `endpoint` es `null` la barra usa el valor local (simulado).
 
 ---
 
-## 6. Licencia y avisos
+## 6. Seguridad
+
+La web es estática y de un solo origen, así que la superficie de ataque es mínima:
+sin backend, sin base de datos, sin cookies, sin `localStorage`, sin dependencias
+de terceros y sin datos de usuario. Lo que sí lleva:
+
+- **Content-Security-Policy** restrictiva en `index.html` (`script-src 'self'`,
+  `object-src 'none'`, `base-uri 'none'`, `form-action 'none'`). Los estilos
+  llevan `'unsafe-inline'` porque las tarjetas usan atributos `style` para
+  colores y retardos.
+  → Si activas `chaos.endpoint` con una API externa, **añade su origen a
+  `connect-src`** o el navegador bloqueará la petición.
+- **Todo lo que sale del config se escapa** antes de insertarse en el DOM
+  (`esc()` en `js/app.js`). Lo que escribe el visitante (el oráculo) nunca se
+  vuelca en la página.
+- **El hash de la URL se valida** como identificador antes de usarlo. Es entrada
+  externa: sin validar, un enlace tipo `.../#<img src=x>` rompía el script y la
+  página se quedaba en blanco.
+- Enlaces externos con `rel="noopener noreferrer"`, `referrer-policy` estricta y
+  HTTPS forzado por GitHub Pages.
+
+Lo que **no** se puede arreglar desde aquí: GitHub Pages no permite enviar
+cabeceras propias, así que `X-Frame-Options`, `X-Content-Type-Options` y
+`frame-ancestors` no se pueden aplicar (en `<meta>` se ignoran). No es relevante
+en esta web porque no hay sesión, formularios reales ni acciones con efecto: lo
+peor que puede hacer alguien es meterla en un iframe. Si algún día importa, hay
+que servirla detrás de Cloudflare o Netlify, que sí dejan poner cabeceras.
+
+---
+
+## 7. Licencia y avisos
 
 - La mascota y la moneda son assets propios del proyecto; no se usan marcas de terceros.
 - Las tipografías son de Google Fonts bajo SIL Open Font License 1.1; el texto de

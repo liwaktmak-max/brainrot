@@ -144,7 +144,7 @@
     var w = C.why;
     var cards = w.cards.map(function (c, i) {
       return '<article class="why-card reveal ' + toneClass(c.tone) + '" style="--d:' + (i * 70) + 'ms">' +
-        '<div class="why-card__icon" aria-hidden="true">' + c.icon + '</div>' +
+        '<div class="why-card__icon" aria-hidden="true">' + esc(c.icon) + '</div>' +
         '<p class="why-card__tag t-' + esc(c.tone) + '">' + esc(c.tag) + '</p>' +
         '<p class="why-card__text">' + esc(c.text) + '</p></article>';
     }).join('');
@@ -368,7 +368,7 @@
     var l = C.levels;
     var items = l.items.map(function (it, i) {
       return '<article class="level reveal" style="--d:' + (i * 60) + 'ms">' +
-        '<p class="level__icon" aria-hidden="true">' + it.icon + '</p>' +
+        '<p class="level__icon" aria-hidden="true">' + esc(it.icon) + '</p>' +
         '<p class="level__tag">' + esc(it.tag) + '</p>' +
         '<h3 class="level__name" style="color:' + toneColor(it.tone) + '">' + esc(it.name) + '</h3>' +
         '<p class="level__text">' + esc(it.text) + '</p></article>';
@@ -409,11 +409,21 @@
       '</div>');
   })();
 
-  /* ------ deep link: el contenido se inyecta por JS, así que reposicionamos */
+  /* ------ deep link: el contenido se inyecta por JS, así que reposicionamos.
+     El hash viene de la URL, o sea de fuera: se valida como identificador y se
+     usa getElementById (nunca querySelector, que con un hash inventado lanza
+     SyntaxError y dejaba la página entera en blanco). */
   (function deepLink() {
-    if (!location.hash) return;
-    var t = document.querySelector(location.hash);
-    if (t) { var b = document.documentElement.style.scrollBehavior; document.documentElement.style.scrollBehavior = 'auto'; t.scrollIntoView(); document.documentElement.style.scrollBehavior = b; }
+    try {
+      var id = decodeURIComponent(location.hash || '').slice(1);
+      if (!/^[A-Za-z][\w-]*$/.test(id)) return;
+      var t = document.getElementById(id);
+      if (!t) return;
+      var b = document.documentElement.style.scrollBehavior;
+      document.documentElement.style.scrollBehavior = 'auto';
+      t.scrollIntoView();
+      document.documentElement.style.scrollBehavior = b;
+    } catch (e) { /* un hash raro nunca debe romper la página */ }
   })();
 
   (function reveals() {
