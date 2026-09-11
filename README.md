@@ -21,7 +21,9 @@ O, si prefieres el comando:
 python -m http.server 3005
 ```
 
-(También puedes abrir `index.html` directamente, pero con servidor es más fiel.)
+(Si abres `index.html` a pelo funciona todo menos las tipografías: Chrome bloquea
+las fuentes locales en `file://`. Con el servidor se ve exactamente como quedará
+publicada.)
 
 ---
 
@@ -130,23 +132,33 @@ Si `endpoint` es `null` la barra usa el valor local (simulado).
   app.js              renderiza las secciones y las interacciones
 /assets/images        mascota, moneda, imagen social (OG 1200x630) y preview
 /assets/icons         favicon 32px y apple-touch-icon 180px
+/assets/fonts         tipografías autoalojadas (.woff2) + licencia OFL
 ```
 
 ---
 
 ## 5. Detalles técnicos
 
-- **Sin dependencias.** Solo se carga Google Fonts (Archivo, Space Grotesk, Space Mono).
-- **Rápida:** imágenes optimizadas, `loading="lazy"` fuera del hero, JS mínimo.
-- **Accesible:** foco visible, `prefers-reduced-motion` respetado, textos alternativos.
-- **Responsive:** probada en escritorio (1440 px) y en móvil (390 / 375 / 430 px).
-- **SEO:** title, description, Open Graph, Twitter card, favicon e imagen social.
+- **Cero peticiones a terceros.** Las tipografías (Archivo, Space Grotesk, Space Mono,
+  todas con licencia OFL) están autoalojadas en `assets/fonts/`, así que la web
+  funciona entera sin conexión y no filtra visitas a ningún servidor externo.
+- **Ligera:** 12 peticiones y ~560 KB en la primera carga (142 KB de fuentes,
+  332 KB de imágenes, 70 KB de código), todo cacheable.
+- **Rápida:** imágenes optimizadas, `loading="lazy"` fuera del hero, JS mínimo
+  y sin frameworks. Primer pintado por debajo del segundo en local.
+- **Accesible:** foco visible, `prefers-reduced-motion` respetado, textos
+  alternativos y áreas táctiles de 44 px o más.
+- **Responsive:** verificada en 1440, 768, 430, 390 y 375 px.
+- **SEO:** title, description, Open Graph, Twitter card, favicon, imagen social,
+  `robots.txt` y `sitemap.xml`.
 
 ---
 
 ## 6. Licencia y avisos
 
 - La mascota y la moneda son assets propios del proyecto; no se usan marcas de terceros.
+- Las tipografías son de Google Fonts bajo SIL Open Font License 1.1; el texto de
+  la licencia va incluido en `assets/fonts/OFL.txt`.
 - La web no representa a ninguna persona real.
 - Antes de usar esto para algo serio, sustituye los datos placeholder y revisa la
   normativa de tu país sobre promoción de criptoactivos.
